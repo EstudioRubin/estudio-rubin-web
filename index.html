@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Estudio Rubin | Inmobiliaria</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #172b3a;
+    background: #ffffff;
+}
+
+header {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+    border-bottom: 1px solid #eeeeee;
+    background: white;
+}
+
+.logo {
+    color: #102c43;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    font-weight: normal;
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #173247;
+    font-size: 14px;
+}
+
+.whatsapp {
+    background: #39736f;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.hero {
+    min-height: 620px;
+    display: flex;
+    align-items: center;
+    padding: 80px 8%;
+    color: white;
+
+    background:
+    linear-gradient(
+        rgba(10,35,50,0.72),
+        rgba(10,35,50,0.35)
+    ),
+    url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=80");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content {
+    max-width: 700px;
+}
+
+.small-title {
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    color: #b9d4cf;
+}
+
+h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(45px, 6vw, 75px);
+    line-height: 1.05;
+    margin-bottom: 25px;
+}
+
+.hero p {
+    font-size: 19px;
+    margin-bottom: 35px;
+}
+
+.button {
+    display: inline-block;
+    background: white;
+    color: #102c43;
+    padding: 15px 25px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+section {
+    padding: 90px 7%;
+}
+
+.section-title {
+    margin-bottom: 40px;
+}
+
+.section-title small {
+    color: #39736f;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+.section-title h2 {
+    font-family: Georgia, serif;
+    font-size: 45px;
+    margin-top: 12px;
+}
+
+.filters {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 35px;
+}
+
+.filters select,
+.filters input {
+    padding: 15px;
+    border: 1px solid #d8dddd;
+    background: white;
+}
+
+.properties {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.property {
+    border: 1px solid #e5e7e6;
+    background: white;
+}
+
+.property img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+}
+
+.property-info {
+    padding: 20px;
+}
+
+.property-type {
+    color: #39736f;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.property h3 {
+    font-family: Georgia, serif;
+    font-size: 25px;
+    margin: 10px 0;
+}
+
+.property-location {
+    color: #68747b;
+    font-size: 14px;
+}
+
+.property-price {
+    color: #102c43;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.about-left {
+    background: #102c43;
+    color: white;
+    padding: 100px 10%;
+}
+
+.about-left h2 {
+    font-family: Georgia, serif;
+    font-size: 45px;
+    line-height: 1.15;
+}
+
+.about-right {
+    background: #f2f1ec;
+    padding: 100px 10%;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.tasacion {
+    text-align: center;
+    background: #e8efed;
+}
+
+.tasacion h2 {
+    font-family: Georgia, serif;
+    font-size: 50px;
+    margin: 15px 0;
+}
+
+.tasacion p {
+    margin-bottom: 30px;
+}
+
+.tasacion .button {
+    background: #102c43;
+    color: white;
+}
+
+.contacto {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+}
+
+.contacto h2 {
+    font-family: Georgia, serif;
+    font-size: 45px;
+    margin-top: 15px;
+}
+
+form {
+    display: grid;
+    gap: 12px;
+}
+
+form input,
+form select,
+form textarea {
+    padding: 15px;
+    border: 1px solid #d8dddd;
+    font-family: Arial;
+}
+
+form textarea {
+    height: 130px;
+}
+
+form button {
+    border: none;
+    background: #102c43;
+    color: white;
+    padding: 16px;
+    cursor: pointer;
+}
+
+footer {
+    background: #0b2030;
+    color: white;
+    padding: 35px 7%;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media(max-width:800px) {
+
+    header {
+        padding: 0 5%;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .hero {
+        min-height: 550px;
+        padding: 60px 7%;
+    }
+
+    section {
+        padding: 65px 6%;
+    }
+
+    .filters,
+    .properties,
+    .about,
+    .contacto {
+        grid-template-columns: 1fr;
+    }
+
+    footer {
+        display: block;
+    }
+
+    footer p {
+        margin-top: 15px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+<span>ESTUDIO</span> RUBIN
+</div>
+
+<nav>
+<a href="#propiedades">Propiedades</a>
+<a href="#nosotros">Nosotros</a>
+<a href="#tasaciones">Tasaciones</a>
+<a href="#contacto">Contacto</a>
+</nav>
+
+<a class="whatsapp" href="#contacto">
+WhatsApp
+</a>
+
+</header>
+
+
+<section class="hero">
+
+<div class="hero-content">
+
+<div class="small-title">
+INMOBILIARIA · DOLORES · SORIANO
+</div>
+
+<h1>
+Encontrá el lugar donde empieza tu próxima historia.
+</h1>
+
+<p>
+Propiedades para vivir, invertir y crecer.
+</p>
+
+<a class="button" href="#propiedades">
+VER PROPIEDADES
+</a>
+
+</div>
+
+</section>
+
+
+<section id="propiedades">
+
+<div class="section-title">
+
+<small>CATÁLOGO</small>
+
+<h2>
+Propiedades destacadas
+</h2>
+
+</div>
+
+
+<div class="filters">
+
+<select>
+<option>Operación</option>
+<option>Venta</option>
+<option>Alquiler</option>
+</select>
+
+<select>
+<option>Tipo de propiedad</option>
+<option>Casa</option>
+<option>Apartamento</option>
+<option>Terreno</option>
+<option>Local comercial</option>
+</select>
+
+<select>
+<option>Localidad</option>
+<option>Dolores</option>
+<option>Mercedes</option>
+<option>Otra localidad</option>
+</select>
+
+<input
+type="number"
+placeholder="Precio máximo"
+>
+
+</div>
+
+
+<div class="properties">
+
+
+<div class="property">
+
+<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80">
+
+<div class="property-info">
+
+<div class="property-type">
+VENTA · CASA
+</div>
+
+<h3>
+Casa familiar con patio
+</h3>
+
+<div class="property-location">
+Dolores · Soriano
+</div>
+
+<div class="property-price">
+US$ 125.000
+</div>
+
+</div>
+
+</div>
+
+
+<div class="property">
+
+<img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=80">
+
+<div class="property-info">
+
+<div class="property-type">
+VENTA · APARTAMENTO
+</div>
+
+<h3>
+Apartamento moderno
+</h3>
+
+<div class="property-location">
+Mercedes · Soriano
+</div>
+
+<div class="property-price">
+US$ 98.000
+</div>
+
+</div>
+
+</div>
+
+
+<div class="property">
+
+<img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80">
+
+<div class="property-info">
+
+<div class="property-type">
+ALQUILER · CASA
+</div>
+
+<h3>
+Casa luminosa y cómoda
+</h3>
+
+<div class="property-location">
+Dolores · Soriano
+</div>
+
+<div class="property-price">
+$ 28.000 / mes
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<div class="about" id="nosotros">
+
+<div class="about-left">
+
+<div class="small-title">
+ESTUDIO RUBIN
+</div>
+
+<h2>
+Cercanía para decidir.<br>
+Experiencia para avanzar.
+</h2>
+
+</div>
+
+
+<div class="about-right">
+
+<p>
+Te acompañamos en cada etapa de la operación, con atención personalizada y conocimiento del mercado inmobiliario local.
+</p>
+
+<br>
+
+<p>
+Venta · Alquiler · Tasaciones · Asesoramiento inmobiliario
+</p>
+
+</div>
+
+</div>
+
+
+<section class="tasacion" id="tasaciones">
+
+<div class="small-title">
+¿QUERÉS SABER CUÁNTO VALE?
+</div>
+
+<h2>
+Solicitá una tasación
+</h2>
+
+<p>
+Contanos sobre tu propiedad y coordinamos una valoración.
+</p>
+
+<a class="button" href="#contacto">
+SOLICITAR TASACIÓN
+</a>
+
+</section>
+
+
+<section class="contacto" id="contacto">
+
+<div>
+
+<div class="small-title">
+CONTACTO
+</div>
+
+<h2>
+Hablemos de tu próxima propiedad.
+</h2>
+
+<br>
+
+<p>
+Dolores, Soriano · Uruguay
+</p>
+
+</div>
+
+
+<form>
+
+<input
+type="text"
+placeholder="Nombre"
+required
+>
+
+<input
+type="tel"
+placeholder="Teléfono"
+required
+>
+
+<select>
+
+<option>Quiero comprar</option>
+<option>Quiero alquilar</option>
+<option>Quiero vender</option>
+<option>Quiero tasar</option>
+<option>Otro</option>
+
+</select>
+
+<textarea
+placeholder="Contanos qué estás buscando"
+></textarea>
+
+<button type="submit">
+ENVIAR CONSULTA
+</button>
+
+</form>
+
+</section>
+
+
+<footer>
+
+<div class="logo">
+<span>ESTUDIO</span> RUBIN
+</div>
+
+<p>
+© 2026 Estudio Rubin · Dolores, Soriano
+</p>
+
+</footer>
+
+</body>
+</html>
