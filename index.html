@@ -605,21 +605,23 @@ CONSULTAR POR WHATSAPP
 </div>
 
 
-<form>
+<form onsubmit="enviarConsulta(event)">
 
 <input
 type="text"
+id="nombre"
 placeholder="Nombre"
 required
 >
 
 <input
 type="tel"
+id="telefono"
 placeholder="Teléfono"
 required
 >
 
-<select>
+<select id="operacion">
 
 <option>Quiero comprar</option>
 <option>Quiero alquilar</option>
@@ -629,6 +631,16 @@ required
 
 </select>
 
+<textarea
+id="mensaje"
+placeholder="Contanos qué estás buscando"
+></textarea>
+
+<button type="submit">
+ENVIAR CONSULTA
+</button>
+
+</form>
 <textarea
 placeholder="Contanos qué estás buscando"
 ></textarea>
