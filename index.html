@@ -682,10 +682,8 @@ function enviarConsulta(event) {
         "Consulta: " + encodeURIComponent(operacion) + "%0A" +
         "Mensaje: " + encodeURIComponent(mensaje);
 
-    window.open(
-        "https://wa.me/59898569780?text=" + texto,
-        "_blank"
-    );
+    window.location.href =
+        "https://wa.me/59898569780?text=" + texto;
 }
 </script>
 
