@@ -654,5 +654,28 @@ ENVIAR CONSULTA
 
 </footer>
 
+<script>
+function enviarConsulta(event) {
+    event.preventDefault();
+
+    const nombre = document.getElementById("nombre").value;
+    const telefono = document.getElementById("telefono").value;
+    const operacion = document.getElementById("operacion").value;
+    const mensaje = document.getElementById("mensaje").value;
+
+    const texto =
+        "Hola, Estudio Rubin.%0A%0A" +
+        "Nombre: " + encodeURIComponent(nombre) + "%0A" +
+        "Teléfono: " + encodeURIComponent(telefono) + "%0A" +
+        "Consulta: " + encodeURIComponent(operacion) + "%0A" +
+        "Mensaje: " + encodeURIComponent(mensaje);
+
+    window.open(
+        "https://wa.me/59898569780?text=" + texto,
+        "_blank"
+    );
+}
+</script>
+
 </body>
 </html>
