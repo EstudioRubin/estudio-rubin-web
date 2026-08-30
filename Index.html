@@ -708,7 +708,7 @@ placeholder="Teléfono"
 required
 >
 
-<select id="operacion">
+<select id="operacionConsulta">
 
 <option>Quiero comprar</option>
 <option>Quiero alquilar</option>
@@ -749,7 +749,7 @@ function enviarConsulta(event) {
 
     const nombre = document.getElementById("nombre").value;
     const telefono = document.getElementById("telefono").value;
-    const operacion = document.getElementById("operacion").value;
+    const operacion = document.getElementById("operacionConsulta").value;
     const mensaje = document.getElementById("mensaje").value;
 
     const texto =
@@ -765,41 +765,187 @@ function enviarConsulta(event) {
 </script>
 
 <script>
-function filtrarPropiedades() {
-    const operacion = document.getElementById("operacion").value;
-    const tipo = document.getElementById("tipo").value;
-    const localidad = document.getElementById("localidad").value;
-    const precioMaximo = document.getElementById("precioMaximo").value;
 
-    const propiedades = document.querySelectorAll(".property");
+async function cargarPropiedades() {
+
+    const contenedor = document.querySelector(".properties");
+
+    if (!contenedor) return;
+
+    try {
+
+        const respuesta = await fetch(
+            "https://api.github.com/repos/EstudioRubin/estudio-rubin-web/contents/propiedades"
+        );
+
+        if (!respuesta.ok) {
+            throw new Error("No se pudieron cargar las propiedades");
+        }
+
+        const archivos = await respuesta.json();
+
+        contenedor.innerHTML = "";
+
+        for (const archivo of archivos) {
+
+            if (!archivo.name.endsWith(".md")) continue;
+
+            const respuestaArchivo = await fetch(archivo.download_url);
+
+            if (!respuestaArchivo.ok) continue;
+
+            const contenido = await respuestaArchivo.text();
+
+            const obtenerCampo = (campo) => {
+
+                const resultado = contenido.match(
+                    new RegExp("^" + campo + ":\\s*(.*)$", "m")
+                );
+
+                if (!resultado) return "";
+
+                return resultado[1]
+                    .trim()
+                    .replace(/^["']|["']$/g, "");
+            };
+
+            const titulo = obtenerCampo("title");
+            const operacion = obtenerCampo("operacion");
+            const tipo = obtenerCampo("tipo");
+            const localidad = obtenerCampo("localidad");
+            const precio = obtenerCampo("precio");
+            const descripcion = obtenerCampo("descripcion");
+
+            const fotos = [];
+
+            const bloqueFotos = contenido.match(
+                /fotos:\s*([\s\S]*?)\n---/
+            );
+
+            if (bloqueFotos) {
+
+                const lineas = bloqueFotos[1].split("\n");
+
+                lineas.forEach((linea) => {
+
+                    const foto = linea.match(/-\s*(.*)/);
+
+                    if (foto) {
+                        fotos.push(foto[1].trim());
+                    }
+
+                });
+
+            }
+
+            const tarjeta = document.createElement("div");
+
+            tarjeta.className = "property";
+
+            const imagen = fotos.length
+                ? fotos[0]
+                : "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80";
+
+            tarjeta.innerHTML = `
+
+                <img src="${imagen}" alt="${titulo}">
+
+                <div class="property-info">
+
+                    <div class="property-type">
+                        ${operacion} · ${tipo}
+                    </div>
+
+                    <h3>
+                        ${titulo}
+                    </h3>
+
+                    <div class="property-location">
+                        ${localidad} · Soriano
+                    </div>
+
+                    <div class="property-price">
+                        ${precio}
+                    </div>
+
+                </div>
+
+            `;
+
+            contenedor.appendChild(tarjeta);
+
+        }
+
+    } catch (error) {
+
+        console.error("Error cargando propiedades:", error);
+
+    }
+
+}
+
+
+function filtrarPropiedades() {
+
+    const operacion =
+        document.getElementById("operacion").value;
+
+    const tipo =
+        document.getElementById("tipo").value;
+
+    const localidad =
+        document.getElementById("localidad").value;
+
+    const precioMaximo =
+        document.getElementById("precioMaximo").value;
+
+
+    const propiedades =
+        document.querySelectorAll(".property");
+
 
     propiedades.forEach(function(propiedad) {
 
-        const tipoTexto = propiedad.querySelector(".property-type")?.innerText.toLowerCase() || "";
-        const localidadTexto = propiedad.querySelector(".property-location")?.innerText.toLowerCase() || "";
-        const precioTexto = propiedad.querySelector(".property-price")?.innerText || "";
+        const tipoTexto =
+            propiedad.querySelector(".property-type")?.innerText.toLowerCase() || "";
+
+        const localidadTexto =
+            propiedad.querySelector(".property-location")?.innerText.toLowerCase() || "";
+
+        const precioTexto =
+            propiedad.querySelector(".property-price")?.innerText || "";
+
 
         const coincideOperacion =
             operacion === "Operación" ||
             tipoTexto.includes(operacion.toLowerCase());
 
+
         const coincideTipo =
             tipo === "Tipo de propiedad" ||
             tipoTexto.includes(tipo.toLowerCase());
+
 
         const coincideLocalidad =
             localidad === "Localidad" ||
             localidadTexto.includes(localidad.toLowerCase());
 
+
         let coincidePrecio = true;
 
-        if (precioMaximo && precioTexto) {
-            const precio = parseFloat(
-                precioTexto.replace(/[^0-9]/g, "")
-            );
 
-            coincidePrecio = precio <= Number(precioMaximo);
+        if (precioMaximo && precioTexto) {
+
+            const precio =
+                parseFloat(
+                    precioTexto.replace(/[^0-9]/g, "")
+                );
+
+            coincidePrecio =
+                precio <= Number(precioMaximo);
+
         }
+
 
         propiedad.style.display =
             coincideOperacion &&
@@ -808,10 +954,18 @@ function filtrarPropiedades() {
             coincidePrecio
                 ? ""
                 : "none";
-    });
-}
-</script>
 
+    });
+
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    cargarPropiedades
+);
+
+</script>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <script>
 if (window.netlifyIdentity) {
