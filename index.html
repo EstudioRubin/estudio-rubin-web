@@ -385,13 +385,13 @@ Propiedades destacadas
 
 <div class="filters">
 
-<select>
+<select id="operacion">
 <option>Operación</option>
 <option>Venta</option>
 <option>Alquiler</option>
 </select>
 
-<select>
+<select id="tipo">
 <option>Tipo de propiedad</option>
 <option>Casa</option>
 <option>Apartamento</option>
@@ -399,7 +399,7 @@ Propiedades destacadas
 <option>Local comercial</option>
 </select>
 
-<select>
+<select id="localidad">
 <option>Localidad</option>
 <option>Dolores</option>
 <option>Mercedes</option>
@@ -408,11 +408,15 @@ Propiedades destacadas
 
 <input
 type="number"
+id="precioMaximo"
 placeholder="Precio máximo"
 >
 
-</div>
+<button type="button" onclick="filtrarPropiedades()">
+Buscar
+</button>
 
+</div>
 
 <div class="properties">
 
@@ -677,8 +681,55 @@ function enviarConsulta(event) {
 }
 </script>
 
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+function filtrarPropiedades() {
+    const operacion = document.getElementById("operacion").value;
+    const tipo = document.getElementById("tipo").value;
+    const localidad = document.getElementById("localidad").value;
+    const precioMaximo = document.getElementById("precioMaximo").value;
 
+    const propiedades = document.querySelectorAll(".property");
+
+    propiedades.forEach(function(propiedad) {
+
+        const tipoTexto = propiedad.querySelector(".property-type")?.innerText.toLowerCase() || "";
+        const localidadTexto = propiedad.querySelector(".property-location")?.innerText.toLowerCase() || "";
+        const precioTexto = propiedad.querySelector(".property-price")?.innerText || "";
+
+        const coincideOperacion =
+            operacion === "Operación" ||
+            tipoTexto.includes(operacion.toLowerCase());
+
+        const coincideTipo =
+            tipo === "Tipo de propiedad" ||
+            tipoTexto.includes(tipo.toLowerCase());
+
+        const coincideLocalidad =
+            localidad === "Localidad" ||
+            localidadTexto.includes(localidad.toLowerCase());
+
+        let coincidePrecio = true;
+
+        if (precioMaximo && precioTexto) {
+            const precio = parseFloat(
+                precioTexto.replace(/[^0-9]/g, "")
+            );
+
+            coincidePrecio = precio <= Number(precioMaximo);
+        }
+
+        propiedad.style.display =
+            coincideOperacion &&
+            coincideTipo &&
+            coincideLocalidad &&
+            coincidePrecio
+                ? ""
+                : "none";
+    });
+}
+</script>
+
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <script>
 if (window.netlifyIdentity) {
   window.netlifyIdentity.on("init", (user) => {
