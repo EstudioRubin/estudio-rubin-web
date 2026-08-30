@@ -133,37 +133,95 @@ section {
 
 .filters {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-bottom: 35px;
+    grid-template-columns: 1fr 1fr 1fr 1fr auto;
+    gap: 14px;
+    align-items: end;
+    padding: 22px;
+    margin-bottom: 45px;
+    background: #f7f8f7;
+    border: 1px solid #e2e7e5;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.filter-group label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: bold;
+    color: #66736f;
 }
 
 .filters select,
 .filters input {
-    padding: 15px;
-    border: 1px solid #d8dddd;
+    width: 100%;
+    height: 50px;
+    padding: 0 14px;
+    border: 1px solid #d3dbd8;
     background: white;
+    color: #172b3a;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    outline: none;
+}
+
+.filters select:focus,
+.filters input:focus {
+    border-color: #39736f;
+}
+
+.search-button {
+    height: 50px;
+    padding: 0 28px;
+    border: none;
+    background: #102c43;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.search-button:hover {
+    background: #39736f;
+    transform: translateY(-1px);
 }
 
 .properties {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
+    gap: 28px;
 }
 
 .property {
     border: 1px solid #e5e7e6;
     background: white;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.property:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(16, 44, 67, 0.10);
 }
 
 .property img {
     width: 100%;
-    height: 240px;
+    height: 260px;
     object-fit: cover;
+    display: block;
 }
 
 .property-info {
-    padding: 20px;
+    padding: 24px;
 }
 
 .property-type {
@@ -186,9 +244,11 @@ section {
 
 .property-price {
     color: #102c43;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
-    margin-top: 15px;
+    margin-top: 18px;
+    padding-top: 15px;
+    border-top: 1px solid #e5e7e6;
 }
 
 .about {
@@ -311,6 +371,14 @@ footer {
         grid-template-columns: 1fr;
     }
 
+    .filters {
+    gap: 16px;
+    padding: 18px;
+}
+
+.search-button {
+    width: 100%;
+}
     footer {
         display: block;
     }
@@ -385,39 +453,54 @@ Propiedades destacadas
 
 <div class="filters">
 
-<select id="operacion">
-<option>Operación</option>
-<option>Venta</option>
-<option>Alquiler</option>
-</select>
+    <div class="filter-group">
+        <label for="operacion">Operación</label>
+        <select id="operacion">
+            <option>Operación</option>
+            <option>Venta</option>
+            <option>Alquiler</option>
+        </select>
+    </div>
 
-<select id="tipo">
-<option>Tipo de propiedad</option>
-<option>Casa</option>
-<option>Apartamento</option>
-<option>Terreno</option>
-<option>Local comercial</option>
-</select>
+    <div class="filter-group">
+        <label for="tipo">Tipo de propiedad</label>
+        <select id="tipo">
+            <option>Tipo de propiedad</option>
+            <option>Casa</option>
+            <option>Apartamento</option>
+            <option>Terreno</option>
+            <option>Local comercial</option>
+        </select>
+    </div>
 
-<select id="localidad">
-<option>Localidad</option>
-<option>Dolores</option>
-<option>Mercedes</option>
-<option>Otra localidad</option>
-</select>
+    <div class="filter-group">
+        <label for="localidad">Localidad</label>
+        <select id="localidad">
+            <option>Localidad</option>
+            <option>Dolores</option>
+            <option>Mercedes</option>
+            <option>Otra localidad</option>
+        </select>
+    </div>
 
-<input
-type="number"
-id="precioMaximo"
-placeholder="Precio máximo"
->
+    <div class="filter-group">
+        <label for="precioMaximo">Precio máximo</label>
+        <input
+            type="number"
+            id="precioMaximo"
+            placeholder="Ej. 150000"
+        >
+    </div>
 
-<button type="button" onclick="filtrarPropiedades()">
-Buscar
-</button>
+    <button
+        type="button"
+        class="search-button"
+        onclick="filtrarPropiedades()"
+    >
+        Buscar propiedades
+    </button>
 
 </div>
-
 <div class="properties">
 
 
