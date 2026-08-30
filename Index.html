@@ -49,58 +49,6 @@ nav {
 nav a {
     text-decoration: none;
     color: #173247;
-    font…
-[17:58, 30/8/2026] Estudio Rubin: <!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Estudio Rubin | Inmobiliaria</title>
-
-<style>
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    color: #172b3a;
-    background: #ffffff;
-}
-
-header {
-    height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 7%;
-    border-bottom: 1px solid #eeeeee;
-    background: white;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-}
-
-.logo img {
-    height: 110px;
-    width: auto;
-    display: block;
-}
-
-nav {
-    display: flex;
-    gap: 30px;
-}
-
-nav a {
-    text-decoration: none;
-    color: #173247;
     font-size: 14px;
 }
 
@@ -238,6 +186,13 @@ section {
     letter-spacing: 1px;
     text-transform: uppercase;
     cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.search-button:hover {
+    background: #39736f;
+    transform: translateY(-1px);
 }
 
 .properties {
@@ -251,7 +206,6 @@ section {
     background: white;
     overflow: hidden;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
-    cursor: pointer;
 }
 
 .property:hover {
@@ -296,146 +250,6 @@ section {
     padding-top: 15px;
     border-top: 1px solid #e5e7e6;
 }
-
-.property-link {
-    display: inline-block;
-    margin-top: 18px;
-    color: #39736f;
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-decoration: none;
-}
-
-.no-properties {
-    padding: 40px;
-    text-align: center;
-    color: #68747b;
-}
-
-/* FICHA DE PROPIEDAD */
-
-.property-detail {
-    display: none;
-    padding: 70px 7%;
-    background: white;
-}
-
-.property-detail.active {
-    display: block;
-}
-
-.back-button {
-    display: inline-block;
-    margin-bottom: 35px;
-    color: #39736f;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: bold;
-}
-
-.detail-gallery {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 12px;
-    margin-bottom: 45px;
-}
-
-.detail-main-image {
-    width: 100%;
-    height: 500px;
-    object-fit: cover;
-}
-
-.detail-thumbnails {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    max-height: 500px;
-    overflow-y: auto;
-}
-
-.detail-thumbnails img {
-    width: 100%;
-    height: 155px;
-    object-fit: cover;
-    cursor: pointer;
-}
-
-.detail-info {
-    max-width: 1000px;
-}
-
-.detail-type {
-    color: #39736f;
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    margin-bottom: 12px;
-}
-
-.detail-title {
-    font-family: Georgia, serif;
-    font-size: clamp(36px, 5vw, 58px);
-    margin-bottom: 12px;
-}
-
-.detail-location {
-    color: #68747b;
-    font-size: 16px;
-    margin-bottom: 25px;
-}
-
-.detail-price {
-    font-size: 28px;
-    font-weight: bold;
-    color: #102c43;
-    margin-bottom: 35px;
-}
-
-.detail-features {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-bottom: 40px;
-}
-
-.feature {
-    padding: 18px;
-    background: #f7f8f7;
-    border: 1px solid #e2e7e5;
-    text-align: center;
-}
-
-.feature strong {
-    display: block;
-    font-size: 20px;
-    margin-bottom: 6px;
-}
-
-.feature span {
-    font-size: 12px;
-    color: #68747b;
-}
-
-.detail-description {
-    font-size: 17px;
-    line-height: 1.8;
-    color: #3d4c55;
-    margin-bottom: 40px;
-    white-space: pre-line;
-}
-
-.detail-whatsapp {
-    display: inline-block;
-    background: #39736f;
-    color: white;
-    padding: 16px 25px;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-/* SOBRE NOSOTROS */
 
 .about {
     display: grid;
@@ -558,30 +372,13 @@ footer {
     }
 
     .filters {
-        gap: 16px;
-        padding: 18px;
-    }
+    gap: 16px;
+    padding: 18px;
+}
 
-    .search-button {
-        width: 100%;
-    }
-
-    .detail-gallery {
-        grid-template-columns: 1fr;
-    }
-
-    .detail-main-image {
-        height: 350px;
-    }
-
-    .detail-thumbnails {
-        max-height: none;
-    }
-
-    .detail-features {
-        grid-template-columns: 1fr 1fr;
-    }
-
+.search-button {
+    width: 100%;
+}
     footer {
         display: block;
     }
@@ -704,48 +501,89 @@ Propiedades destacadas
     </button>
 
 </div>
+<div class="properties">
 
 
-<div class="properties" id="properties"></div>
+<div class="property">
 
-</section>
+<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80">
 
+<div class="property-info">
 
-<!-- FICHA INDIVIDUAL -->
+<div class="property-type">
+VENTA · CASA
+</div>
 
-<section class="property-detail" id="propertyDetail">
+<h3>
+Casa familiar con patio
+</h3>
 
-<a href="#propiedades" class="back-button" onclick="cerrarFicha()">
-← VOLVER A PROPIEDADES
-</a>
+<div class="property-location">
+Dolores · Soriano
+</div>
 
-<div class="detail-gallery">
-
-    <div>
-        <img id="detailMainImage" class="detail-main-image" src="" alt="">
-    </div>
-
-    <div id="detailThumbnails" class="detail-thumbnails"></div>
+<div class="property-price">
+US$ 125.000
+</div>
 
 </div>
 
-<div class="detail-info">
+</div>
 
-    <div id="detailType" class="detail-type"></div>
 
-    <h2 id="detailTitle" class="detail-title"></h2>
+<div class="property">
 
-    <div id="detailLocation" class="detail-location"></div>
+<img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=80">
 
-    <div id="detailPrice" class="detail-price"></div>
+<div class="property-info">
 
-    <div id="detailFeatures" class="detail-features"></div>
+<div class="property-type">
+VENTA · APARTAMENTO
+</div>
 
-    <div id="detailDescription" class="detail-description"></div>
+<h3>
+Apartamento moderno
+</h3>
 
-    <a id="detailWhatsapp" class="detail-whatsapp" href="" target="_blank">
-        CONSULTAR POR WHATSAPP
-    </a>
+<div class="property-location">
+Mercedes · Soriano
+</div>
+
+<div class="property-price">
+US$ 98.000
+</div>
+
+</div>
+
+</div>
+
+
+<div class="property">
+
+<img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80">
+
+<div class="property-info">
+
+<div class="property-type">
+ALQUILER · CASA
+</div>
+
+<h3>
+Casa luminosa y cómoda
+</h3>
+
+<div class="property-location">
+Dolores · Soriano
+</div>
+
+<div class="property-price">
+$ 28.000 / mes
+</div>
+
+</div>
+
+</div>
+
 
 </div>
 
@@ -893,7 +731,6 @@ ENVIAR CONSULTA
 
 </section>
 
-
 <footer>
 
 <div class="logo">
@@ -901,29 +738,19 @@ ENVIAR CONSULTA
 </div>
 
 <p>
-©️ 2026 Estudio Rubin · Dolores, Soriano
+© 2026 Estudio Rubin · Dolores, Soriano
 </p>
 
 </footer>
 
-
 <script>
-
 function enviarConsulta(event) {
-
     event.preventDefault();
 
-    const nombre =
-        document.getElementById("nombre").value;
-
-    const telefono =
-        document.getElementById("telefono").value;
-
-    const operacion =
-        document.getElementById("operacionConsulta").value;
-
-    const mensaje =
-        document.getElementById("mensaje").value;
+    const nombre = document.getElementById("nombre").value;
+    const telefono = document.getElementById("telefono").value;
+    const operacion = document.getElementById("operacionConsulta").value;
+    const mensaje = document.getElementById("mensaje").value;
 
     const texto =
         "Hola, Estudio Rubin.%0A%0A" +
@@ -935,17 +762,15 @@ function enviarConsulta(event) {
     window.location.href =
         "https://wa.me/59898569780?text=" + texto;
 }
+</script>
 
-
-/* LECTURA DE PROPIEDADES */
-
-let propiedadesCargadas = [];
-
+<script>
 
 async function cargarPropiedades() {
 
-    const contenedor =
-        document.getElementById("properties");
+    const contenedor = document.querySelector(".properties");
+
+    if (!contenedor) return;
 
     try {
 
@@ -957,199 +782,73 @@ async function cargarPropiedades() {
             throw new Error("No se pudieron cargar las propiedades");
         }
 
-        const archivos =
-            await respuesta.json();
+        const archivos = await respuesta.json();
 
         contenedor.innerHTML = "";
 
-        propiedadesCargadas = [];
-
         for (const archivo of archivos) {
 
-            if (!archivo.name.endsWith(".md")) {
-                continue;
-            }
+            if (!archivo.name.endsWith(".md")) continue;
 
-            const respuestaArchivo =
-                await fetch(archivo.download_url);
+            const respuestaArchivo = await fetch(archivo.download_url);
 
-            if (!respuestaArchivo.ok) {
-                continue;
-            }
+            if (!respuestaArchivo.ok) continue;
 
-            const contenido =
-                await respuestaArchivo.text();
+            const contenido = await respuestaArchivo.text();
 
+            const obtenerCampo = (campo) => {
 
-            function obtenerCampo(campo) {
+                const resultado = contenido.match(
+                    new RegExp("^" + campo + ":\\s*(.*)$", "m")
+                );
 
-                const resultado =
-                    contenido.match(
-                        new RegExp(
-                            "^" + campo + ":\\s*(.*)$",
-                            "m"
-                        )
-                    );
-
-                if (!resultado) {
-                    return "";
-                }
+                if (!resultado) return "";
 
                 return resultado[1]
                     .trim()
                     .replace(/^["']|["']$/g, "");
-            }
+            };
 
-
-            const titulo =
-                obtenerCampo("title");
-
-            const operacion =
-                obtenerCampo("operacion");
-
-            const tipo =
-                obtenerCampo("tipo");
-
-            const localidad =
-                obtenerCampo("localidad");
-
-            const direccion =
-                obtenerCampo("direccion");
-
-            const precio =
-                obtenerCampo("precio");
-
-            const moneda =
-                obtenerCampo("moneda");
-
-            const dormitorios =
-                obtenerCampo("dormitorios");
-
-            const banos =
-                obtenerCampo("banos");
-
-            const metros =
-                obtenerCampo("metros");
-
-            const garage =
-                obtenerCampo("garage");
-
-            const patio =
-                obtenerCampo("patio");
-
-            const mascotas =
-                obtenerCampo("mascotas");
-
-            const credito =
-                obtenerCampo("credito");
-
-
-            /* DESCRIPCIÓN */
-
-            let descripcion = "";
-
-            const descripcionMatch =
-                contenido.match(
-                    /descripcion:\s*\|-\s*([\s\S]*?)(?=\n[a-zA-Z_]+:|\n---|$)/
-                );
-
-            if (descripcionMatch) {
-
-                descripcion =
-                    descripcionMatch[1]
-                    .replace(/^\s+/gm, "")
-                    .trim();
-
-            } else {
-
-                descripcion =
-                    obtenerCampo("descripcion");
-
-            }
-
-
-            /* FOTOS */
+            const titulo = obtenerCampo("title");
+            const operacion = obtenerCampo("operacion");
+            const tipo = obtenerCampo("tipo");
+            const localidad = obtenerCampo("localidad");
+            const precio = obtenerCampo("precio");
+            const descripcion = obtenerCampo("descripcion");
 
             const fotos = [];
 
-            const bloqueFotos =
-                contenido.match(
-                    /fotos:\s*\n([\s\S]*?)(?=\n[a-zA-Z_]+:|\n---|$)/
-                );
+            const bloqueFotos = contenido.match(
+                /fotos:\s*([\s\S]*?)\n---/
+            );
 
             if (bloqueFotos) {
 
-                const lineas =
-                    bloqueFotos[1].split("\n");
+                const lineas = bloqueFotos[1].split("\n");
 
-                lineas.forEach(function(linea) {
+                lineas.forEach((linea) => {
 
-                    const coincidencia =
-                        linea.match(
-                            /imagen:\s*["']?([^"'\n]+)["']?/
-                        );
+                    const foto = linea.match(/-\s*(.*)/);
 
-                    if (coincidencia) {
-
-                        fotos.push(
-                            coincidencia[1].trim()
-                        );
-
+                    if (foto) {
+                        fotos.push(foto[1].trim());
                     }
 
                 });
 
             }
 
+            const tarjeta = document.createElement("div");
 
-            /* DATOS DE LA PROPIEDAD */
+            tarjeta.className = "property";
 
-            const propiedad = {
-
-                titulo,
-                operacion,
-                tipo,
-                localidad,
-                direccion,
-                precio,
-                moneda,
-                dormitorios,
-                banos,
-                metros,
-                garage,
-                patio,
-                mascotas,
-                credito,
-                descripcion,
-                fotos
-
-            };
-
-
-            propiedadesCargadas.push(propiedad);
-
-
-            /* TARJETA */
-
-            const tarjeta =
-                document.createElement("div");
-
-            tarjeta.className =
-                "property";
-
-
-            const imagen =
-                fotos.length
-                    ? fotos[0]
-                    : "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80";
-
+            const imagen = fotos.length
+                ? fotos[0]
+                : "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80";
 
             tarjeta.innerHTML = `
 
-                <img
-                    src="${imagen}"
-                    alt="${titulo}"
-                >
+                <img src="${imagen}" alt="${titulo}">
 
                 <div class="property-info">
 
@@ -1162,325 +861,29 @@ async function cargarPropiedades() {
                     </h3>
 
                     <div class="property-location">
-                        ${localidad}
-                        ${direccion ? " · " + direccion : ""}
+                        ${localidad} · Soriano
                     </div>
 
                     <div class="property-price">
-                        ${moneda} ${precio}
+                        ${precio}
                     </div>
-
-                    <a
-                        class="property-link"
-                        href="#"
-                    >
-                        VER PROPIEDAD →
-                    </a>
 
                 </div>
 
             `;
-
-
-            tarjeta.addEventListener(
-                "click",
-                function() {
-
-                    abrirFicha(propiedad);
-
-                }
-            );
-
 
             contenedor.appendChild(tarjeta);
 
         }
 
-
-        if (!propiedadesCargadas.length) {
-
-            contenedor.innerHTML = `
-                <div class="no-properties">
-                    No hay propiedades disponibles actualmente.
-                </div>
-            `;
-
-        }
-
-
     } catch (error) {
 
-        console.error(
-            "Error cargando propiedades:",
-            error
-        );
+        console.error("Error cargando propiedades:", error);
 
     }
 
 }
 
-
-/* ABRIR FICHA */
-
-function abrirFicha(propiedad) {
-
-    document.getElementById("properties").style.display =
-        "none";
-
-    document.querySelector(".filters").style.display =
-        "none";
-
-    document.querySelector("#propiedades .section-title").style.display =
-        "none";
-
-
-    const detalle =
-        document.getElementById("propertyDetail");
-
-    detalle.classList.add("active");
-
-
-    document.getElementById("detailType").innerText =
-        propiedad.operacion + " · " + propiedad.tipo;
-
-
-    document.getElementById("detailTitle").innerText =
-        propiedad.titulo;
-
-
-    document.getElementById("detailLocation").innerText =
-        propiedad.localidad +
-        (propiedad.direccion
-            ? " · " + propiedad.direccion
-            : "");
-
-
-    document.getElementById("detailPrice").innerText =
-        propiedad.moneda + " " + propiedad.precio;
-
-
-    /* CARACTERÍSTICAS */
-
-    const features =
-        document.getElementById("detailFeatures");
-
-    features.innerHTML = "";
-
-
-    function agregarCaracteristica(
-        icono,
-        valor,
-        texto
-    ) {
-
-        if (
-            valor !== "" &&
-            valor !== undefined &&
-            valor !== "false"
-        ) {
-
-            const div =
-                document.createElement("div");
-
-            div.className =
-                "feature";
-
-            div.innerHTML =
-                `<strong>${icono}</strong>
-                 <span>${texto}</span>`;
-
-            features.appendChild(div);
-
-        }
-
-    }
-
-
-    if (propiedad.dormitorios) {
-
-        agregarCaracteristica(
-            "🛏️ " + propiedad.dormitorios,
-            propiedad.dormitorios,
-            "Dormitorios"
-        );
-
-    }
-
-
-    if (propiedad.banos) {
-
-        agregarCaracteristica(
-            "🛁 " + propiedad.banos,
-            propiedad.banos,
-            "Baños"
-        );
-
-    }
-
-
-    if (propiedad.metros) {
-
-        agregarCaracteristica(
-            "📐 " + propiedad.metros,
-            propiedad.metros,
-            "m²"
-        );
-
-    }
-
-
-    if (
-        propiedad.garage === "true" ||
-        propiedad.garage === "Sí"
-    ) {
-
-        agregarCaracteristica(
-            "🚗",
-            "Sí",
-            "Garage"
-        );
-
-    }
-
-
-    if (
-        propiedad.patio === "true" ||
-        propiedad.patio === "Sí"
-    ) {
-
-        agregarCaracteristica(
-            "🌳",
-            "Sí",
-            "Patio"
-        );
-
-    }
-
-
-    if (
-        propiedad.mascotas === "true" ||
-        propiedad.mascotas === "Sí"
-    ) {
-
-        agregarCaracteristica(
-            "🐶",
-            "Sí",
-            "Permite mascotas"
-        );
-
-    }
-
-
-    if (
-        propiedad.credito === "true" ||
-        propiedad.credito === "Sí"
-    ) {
-
-        agregarCaracteristica(
-            "🏦",
-            "Sí",
-            "Apta para crédito"
-        );
-
-    }
-
-
-    /* DESCRIPCIÓN */
-
-    document.getElementById("detailDescription").innerText =
-        propiedad.descripcion || "";
-
-
-    /* GALERÍA */
-
-    const mainImage =
-        document.getElementById("detailMainImage");
-
-    const thumbnails =
-        document.getElementById("detailThumbnails");
-
-    thumbnails.innerHTML = "";
-
-
-    if (propiedad.fotos.length) {
-
-        mainImage.src =
-            propiedad.fotos[0];
-
-
-        propiedad.fotos.forEach(
-            function(foto) {
-
-                const img =
-                    document.createElement("img");
-
-                img.src = foto;
-
-                img.alt =
-                    propiedad.titulo;
-
-                img.addEventListener(
-                    "click",
-                    function() {
-
-                        mainImage.src =
-                            foto;
-
-                    }
-                );
-
-                thumbnails.appendChild(img);
-
-            }
-        );
-
-    } else {
-
-        mainImage.src =
-            "https://images.unsplash.com/photo-1600585154340-be6161a56a6c0?auto=format&fit=crop&w=1200&q=80";
-
-    }
-
-
-    /* WHATSAPP */
-
-    const mensaje =
-        "Hola, Estudio Rubin. Me interesa la propiedad \"" +
-        propiedad.titulo +
-        "\".";
-
-    document.getElementById("detailWhatsapp").href =
-        "https://wa.me/59898569780?text=" +
-        encodeURIComponent(mensaje);
-
-
-    detalle.scrollIntoView({
-        behavior: "smooth"
-    });
-
-}
-
-
-/* CERRAR FICHA */
-
-function cerrarFicha() {
-
-    document.getElementById("propertyDetail")
-        .classList.remove("active");
-
-    document.getElementById("properties")
-        .style.display = "grid";
-
-    document.querySelector(".filters")
-        .style.display = "grid";
-
-    document.querySelector("#propiedades .section-title")
-        .style.display = "block";
-
-}
-
-
-/* FILTROS */
 
 function filtrarPropiedades() {
 
@@ -1501,82 +904,58 @@ function filtrarPropiedades() {
         document.querySelectorAll(".property");
 
 
-    propiedades.forEach(
-        function(propiedad) {
+    propiedades.forEach(function(propiedad) {
 
-            const tipoTexto =
-                propiedad.querySelector(
-                    ".property-type"
-                )?.innerText.toLowerCase() || "";
+        const tipoTexto =
+            propiedad.querySelector(".property-type")?.innerText.toLowerCase() || "";
 
+        const localidadTexto =
+            propiedad.querySelector(".property-location")?.innerText.toLowerCase() || "";
 
-            const localidadTexto =
-                propiedad.querySelector(
-                    ".property-location"
-                )?.innerText.toLowerCase() || "";
+        const precioTexto =
+            propiedad.querySelector(".property-price")?.innerText || "";
 
 
-            const precioTexto =
-                propiedad.querySelector(
-                    ".property-price"
-                )?.innerText || "";
+        const coincideOperacion =
+            operacion === "Operación" ||
+            tipoTexto.includes(operacion.toLowerCase());
 
 
-            const coincideOperacion =
-                operacion === "Operación" ||
-                tipoTexto.includes(
-                    operacion.toLowerCase()
+        const coincideTipo =
+            tipo === "Tipo de propiedad" ||
+            tipoTexto.includes(tipo.toLowerCase());
+
+
+        const coincideLocalidad =
+            localidad === "Localidad" ||
+            localidadTexto.includes(localidad.toLowerCase());
+
+
+        let coincidePrecio = true;
+
+
+        if (precioMaximo && precioTexto) {
+
+            const precio =
+                parseFloat(
+                    precioTexto.replace(/[^0-9]/g, "")
                 );
 
-
-            const coincideTipo =
-                tipo === "Tipo de propiedad" ||
-                tipoTexto.includes(
-                    tipo.toLowerCase()
-                );
-
-
-            const coincideLocalidad =
-                localidad === "Localidad" ||
-                localidadTexto.includes(
-                    localidad.toLowerCase()
-                );
-
-
-            let coincidePrecio = true;
-
-
-            if (
-                precioMaximo &&
-                precioTexto
-            ) {
-
-                const precio =
-                    parseFloat(
-                        precioTexto.replace(
-                            /[^0-9]/g,
-                            ""
-                        )
-                    );
-
-
-                coincidePrecio =
-                    precio <=
-                    Number(precioMaximo);
-
-            }
-
-
-            propiedad.style.display =
-                coincideOperacion &&
-                coincideTipo &&
-                coincideLocalidad &&
-                coincidePrecio
-                    ? ""
-                    : "none";
+            coincidePrecio =
+                precio <= Number(precioMaximo);
 
         }
-    );
+
+
+        propiedad.style.display =
+            coincideOperacion &&
+            coincideTipo &&
+            coincideLocalidad &&
+            coincidePrecio
+                ? ""
+                : "none";
+
+    });
 
 }
 
@@ -1587,37 +966,17 @@ document.addEventListener(
 );
 
 </script>
-
-
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
 <script>
-
 if (window.netlifyIdentity) {
-
-    window.netlifyIdentity.on(
-        "init",
-        (user) => {
-
-            if (!user) {
-
-                window.netlifyIdentity.on(
-                    "login",
-                    () => {
-
-                        document.location.href =
-                            "/admin/";
-
-                    }
-                );
-
-            }
-
-        }
-    );
-
+  window.netlifyIdentity.on("init", (user) => {
+    if (!user) {
+      window.netlifyIdentity.on("login", () => {
+        document.location.href = "/admin/";
+      });
+    }
+  });
 }
-
 </script>
 
 </body>
