@@ -826,25 +826,33 @@ const mascotas = obtenerCampo("mascotas");
 const credito = obtenerCampo("credito");
             const fotos = [];
 
-            const bloqueFotos = contenido.match(
-                /fotos:\s*([\s\S]*?)\n---/
-            );
+const bloqueFotos = contenido.match(
+    /fotos:\s*([\s\S]*?)(?=\n[a-zA-ZáéíóúÁÉÍÓÚ_]+:|\n---|$)/
+);
 
-            if (bloqueFotos) {
+if (bloqueFotos) {
 
-                const lineas = bloqueFotos[1].split("\n");
+    const lineas = bloqueFotos[1].split("\n");
 
-                lineas.forEach((linea) => {
+    lineas.forEach(function(linea) {
 
-                    const foto = linea.match(/-\s*(.*)/);
+        const coincidencia = linea.match(/^\s*-\s*(?:foto|imagen)?:?\s*(.*)$/);
 
-                    if (foto) {
-                        fotos.push(foto[1].trim());
-                    }
+        if (coincidencia && coincidencia[1]) {
 
-                });
+            let foto = coincidencia[1]
+                .trim()
+                .replace(/^["']|["']$/g, "");
 
+            if (foto) {
+                fotos.push(foto);
             }
+
+        }
+
+    });
+
+}
 
 const tarjeta = document.createElement("div");
 
@@ -873,6 +881,7 @@ tarjeta.innerHTML = `
         </div>
 
         <div class="property-price">
+            ${moneda ? moneda + " " : ""}
             ${precio}
         </div>
 
@@ -893,24 +902,25 @@ tarjeta.innerHTML = `
 tarjeta.addEventListener("click", function() {
 
     mostrarFicha({
-    titulo: titulo,
-    operacion: operacion,
-    tipo: tipo,
-    localidad: localidad,
-    direccion: direccion,
-    precio: precio,
-    moneda: moneda,
-    dormitorios: dormitorios,
-    banos: banos,
-    metros: metros,
-    garage: garage,
-    patio: patio,
-    mascotas: mascotas,
-    credito: credito,
-    descripcion: descripcion,
-    fotos: fotos
-});
+        titulo: titulo,
+        operacion: operacion,
+        tipo: tipo,
+        localidad: localidad,
+        direccion: direccion,
+        precio: precio,
+        moneda: moneda,
+        dormitorios: dormitorios,
+        banos: banos,
+        metros: metros,
+        garage: garage,
+        patio: patio,
+        mascotas: mascotas,
+        credito: credito,
+        descripcion: descripcion,
+        fotos: fotos
+    });
 
+});
 
 contenedor.appendChild(tarjeta);
         }
